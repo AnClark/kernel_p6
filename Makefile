@@ -1,3 +1,5 @@
+-include UEDGE_BoardConfig.mk
+-include UEDGE_platform.mk
 VERSION = 3
 PATCHLEVEL = 0
 SUBLEVEL = 8
@@ -369,6 +371,15 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security \
 		   -fno-delete-null-pointer-checks
+
+ifeq ($(USE_MATE_CAMERA_SETTINGS),true)
+      KBUILD_CFLAGS += -DUSE_MATE_CAMERA_SETTINGS
+endif
+
+ifeq ($(USE_EDGE_CAMERA_SETTINGS),true)
+      KBUILD_CFLAGS += -DUSE_EDGE_CAMERA_SETTINGS
+endif
+
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
 KBUILD_AFLAGS   := -D__ASSEMBLY__
